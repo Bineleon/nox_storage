@@ -11,7 +11,7 @@ All **host** commands below assume the **repository root** (where `docker-compos
 - Install **Docker** with Compose v2 (`docker compose …`).
   - **macOS / Windows**: [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the usual choice; alternatives such as [Colima](https://github.com/abiosoft/colima) or [Rancher Desktop](https://rancherdesktop.io/) also work if they provide the Docker CLI and Compose v2.
   - **Linux**: [Docker Engine](https://docs.docker.com/engine/install/) and the [Compose plugin](https://docs.docker.com/compose/install/linux/) are enough — Desktop is not required.
-- `cp .env.example .env` — optionally edit `JWT_SECRET` (and URLs if not using localhost).
+- `cp .env.example .env`
 - `docker compose up --build` — waits for Postgres, then the **api** container runs migrations + seed automatically, then starts API (**4000**) and web (**3000**).
 
 Open [http://localhost:3000](http://localhost:3000).
