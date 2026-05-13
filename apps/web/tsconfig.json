@@ -1,0 +1,42 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@deco/shared": ["../../packages/shared/src/index.ts"],
+      "@deco/shared/*": ["../../packages/shared/src/*"],
+      "@deco/database": ["../../packages/database/src/index.ts"],
+      "@deco/database/*": ["../../packages/database/src/*"],
+      "@deco/ui": ["../../packages/ui/src/index.ts"],
+      "@deco/ui/*": ["../../packages/ui/src/*"],
+      "@/*": ["./src/*"]
+    },
+    "types": ["node", "react", "react-dom"],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/shared/src/**/*.ts",
+    "../../packages/database/src/**/*.ts",
+    "../../packages/ui/src/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

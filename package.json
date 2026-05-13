@@ -1,0 +1,21 @@
+{
+  "name": "deco-storage",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@11.0.8",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm run dev -w api & pnpm run dev -w web",
+    "build": "pnpm run build -w database && pnpm run build -w shared && pnpm run build -w ui && pnpm run build -w api && pnpm run build -w web",
+    "lint": "pnpm run lint -w api && pnpm run lint -w web",
+    "typecheck": "pnpm run typecheck -w api && pnpm run typecheck -w web && pnpm run typecheck -w shared && pnpm run typecheck -w ui",
+
+    "db:generate": "pnpm --filter @deco/database run generate",
+    "db:migrate": "pnpm --filter @deco/database run migrate",
+    "db:migrate:deploy": "pnpm --filter @deco/database run migrate:deploy",
+    "db:seed": "pnpm --filter @deco/database run seed"
+  }
+}

@@ -1,0 +1,9 @@
+.env
+data/postgres/
+node_modules
+pnpm-lock.yaml
+dist
+.next
+uploads
+coverage
+.DS_Store

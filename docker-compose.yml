@@ -1,0 +1,65 @@
+name: deco-storage
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: deco_storage
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d deco_storage"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    command: ["sh", "/app/scripts/docker-api-entrypoint.sh"]
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/deco_storage?schema=public
+      UPLOAD_DIR: /app/uploads
+      PUBLIC_BASE_URL: http://localhost:4000
+      HARD_CODED_OWNER_ID: 00000000-0000-0000-0000-000000000001
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./apps/api:/app/apps/api
+      - ./packages:/app/packages
+      - uploads_data:/app/uploads
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      API_URL: http://api:4000
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+      WEB_PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    volumes:
+      - ./apps/web:/app/apps/web
+      - ./packages:/app/packages
+      - web_node_modules:/app/apps/web/node_modules
+
+volumes:
+  uploads_data:
+  web_node_modules:

@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum InventoryItemVisibility {
+  PRIVATE
+  PUBLIC
+}
+
+enum InventoryItemStatus {
+  AVAILABLE
+  RESERVED
+  BORROWED
+  ARCHIVED
+}
+
+model User {
+  id        String          @id @default(uuid())
+  firstname String
+  lastname  String
+  email     String          @unique
+  username  String          @unique
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  inventory InventoryItem[]
+}
+
+model Category {
+  id      String          @id @default(uuid())
+  name    String          @unique
+  items   InventoryItem[]
+}
+
+model StorageLocation {
+  id           String          @id @default(uuid())
+  name         String
+  description  String?
+  addressLine  String
+  postalCode   String
+  city         String
+  items        InventoryItem[]
+}
+
+model InventoryItem {
+  id                String                 @id @default(uuid())
+  name              String
+  description       String?
+  quantity          Int
+  heightCm          Int?
+  widthCm           Int?
+  lengthCm          Int?
+  depthCm           Int?
+  condition         String
+  commentaire       String?
+  visibility        InventoryItemVisibility @default(PRIVATE)
+  status            InventoryItemStatus     @default(AVAILABLE)
+  categoryId        String
+  storageLocationId  String
+  ownerId           String
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  category          Category               @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  storageLocation   StorageLocation        @relation(fields: [storageLocationId], references: [id], onDelete: Restrict)
+  owner             User                   @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  photos            InventoryItemPhoto[]
+
+  @@index([categoryId])
+  @@index([storageLocationId])
+  @@index([ownerId])
+}
+
+model InventoryItemPhoto {
+  id               String         @id @default(uuid())
+  inventoryItemId   String
+  url              String
+  createdAt        DateTime       @default(now())
+  inventoryItem    InventoryItem  @relation(fields: [inventoryItemId], references: [id], onDelete: Cascade)
+
+  @@index([inventoryItemId])
+}
