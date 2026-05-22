@@ -51,7 +51,10 @@ export default function NewInventoryPage() {
       {metaError ? <p className="muted">{metaError}</p> : null}
       {!meta && !metaError ? <p className="muted">Chargement des catégories et emplacements…</p> : null}
       {meta && meta.categories.length === 0 ? (
-        <p className="muted">Aucune catégorie en base. Lancez le seed : pnpm db:seed</p>
+        <p className="muted">
+          Aucune catégorie disponible.{" "}
+          <a href="/admin/categories">Ajoutez des catégories dans l’administration</a>.
+        </p>
       ) : null}
       {meta && meta.storageLocations.length === 0 ? (
         <p className="muted">Aucun emplacement en base. Lancez le seed : pnpm db:seed</p>
@@ -75,10 +78,10 @@ export default function NewInventoryPage() {
                 for (const photo of photos) {
                   formData.append("files", photo);
                 }
-                const photoRes = await fetch(
-                  `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000"}/inventory-items/${created.id}/photos`,
-                  { method: "POST", body: formData }
-                );
+                const photoRes = await fetch(`/api/inventory-items/${created.id}/photos`, {
+                  method: "POST",
+                  body: formData
+                });
                 if (!photoRes.ok) {
                   const detail = (await photoRes.text()).trim().slice(0, 300);
                   throw new Error(

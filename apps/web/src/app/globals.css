@@ -89,6 +89,11 @@ button {
   font-weight: 600;
 }
 
+a.button-link.secondary {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
 button.secondary {
   background: #e2e8f0;
   color: #0f172a;
@@ -109,6 +114,16 @@ button.secondary {
 
 .muted {
   color: #64748b;
+}
+
+.error-banner {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-weight: 500;
 }
 
 .list {

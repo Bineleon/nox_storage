@@ -24,7 +24,7 @@ async function main(): Promise<void> {
   });
 
   await prisma.category.createMany({
-    data: [{ name: "Lumière" }, { name: "Mobilier" }, { name: "Textile" }],
+    data: [{ name: "Lumière" }, { name: "Mobilier" }],
     skipDuplicates: true
   });
 

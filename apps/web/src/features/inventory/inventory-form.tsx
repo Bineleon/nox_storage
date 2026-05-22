@@ -20,7 +20,7 @@ const defaultValues: InventoryItemInput = {
   heightCm: undefined,
   widthCm: undefined,
   lengthCm: undefined,
-  depthCm: undefined,
+  operatingLocation: "",
   condition: "Bon état",
   commentaire: "",
   visibility: "PRIVATE",
@@ -101,6 +101,15 @@ export function InventoryForm({
           )}
         </div>
         <div className="field">
+          <label>Lieu d&apos;exploitation</label>
+          <input
+            value={values.operatingLocation ?? ""}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              updateField("operatingLocation", event.target.value || undefined)
+            }
+          />
+        </div>
+        <div className="field">
           <label>Emplacement</label>
           {storageOptions && storageOptions.length > 0 ? (
             <select
@@ -161,10 +170,6 @@ export function InventoryForm({
         <div className="field">
           <label>Longueur (cm)</label>
           <input type="number" min="0" value={values.lengthCm ?? ""} onChange={(event: ChangeEvent<HTMLInputElement>) => updateField("lengthCm", event.target.value === "" ? undefined : Number(event.target.value))} />
-        </div>
-        <div className="field">
-          <label>Profondeur (cm)</label>
-          <input type="number" min="0" value={values.depthCm ?? ""} onChange={(event: ChangeEvent<HTMLInputElement>) => updateField("depthCm", event.target.value === "" ? undefined : Number(event.target.value))} />
         </div>
       </div>
       <div className="field">

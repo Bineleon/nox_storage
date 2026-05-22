@@ -9,7 +9,7 @@ export type InventoryItemResponse = {
   heightCm?: number | null;
   widthCm?: number | null;
   lengthCm?: number | null;
-  depthCm?: number | null;
+  operatingLocation?: string | null;
   condition: string;
   commentaire?: string | null;
   visibility: "PRIVATE" | "PUBLIC";
@@ -24,9 +24,7 @@ export type InventoryItemResponse = {
   photos: Array<{ id: string; url: string; createdAt: string }>;
 };
 
-export async function listCategories() {
-  return apiFetch<Array<{ id: string; name: string }>>("/categories");
-}
+export { listCategories } from "./category.service";
 
 export async function listStorageLocations() {
   return apiFetch<Array<{ id: string; name: string }>>("/storage-locations");

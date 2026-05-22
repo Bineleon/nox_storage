@@ -32,7 +32,7 @@ export const inventoryItemSchema = z.object({
   heightCm: optionalPositiveInteger,
   widthCm: optionalPositiveInteger,
   lengthCm: optionalPositiveInteger,
-  depthCm: optionalPositiveInteger,
+  operatingLocation: z.string().max(255).nullable().optional(),
   condition: z.string().min(1).max(120),
   commentaire: z.string().max(2000).nullable().optional(),
   visibility: z.enum(inventoryVisibilityValues),
@@ -54,7 +54,7 @@ export const inventoryItemUpsertSchema = z.object({
   heightCm: optionalPositiveInteger,
   widthCm: optionalPositiveInteger,
   lengthCm: optionalPositiveInteger,
-  depthCm: optionalPositiveInteger,
+  operatingLocation: z.string().max(255).nullable().optional(),
   condition: z.string().min(1).max(120),
   commentaire: z.string().max(2000).nullable().optional(),
   visibility: z.enum(inventoryVisibilityValues),
@@ -81,6 +81,10 @@ export const inventoryItemListQuerySchema = z.object({
 
 export const categoryInputSchema = z.object({
   name: z.string().min(1).max(120)
+});
+
+export const categoryIdParamsSchema = z.object({
+  id: z.string().uuid()
 });
 
 export const storageLocationInputSchema = z.object({

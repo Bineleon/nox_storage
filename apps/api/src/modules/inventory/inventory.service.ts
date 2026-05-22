@@ -25,7 +25,8 @@ export class InventoryService {
             OR: [
               { name: { contains: query.search, mode: "insensitive" } },
               { description: { contains: query.search, mode: "insensitive" } },
-              { commentaire: { contains: query.search, mode: "insensitive" } }
+              { commentaire: { contains: query.search, mode: "insensitive" } },
+              { operatingLocation: { contains: query.search, mode: "insensitive" } }
             ]
           }
         : {})
@@ -44,7 +45,7 @@ export class InventoryService {
       heightCm: input.heightCm ?? null,
       widthCm: input.widthCm ?? null,
       lengthCm: input.lengthCm ?? null,
-      depthCm: input.depthCm ?? null,
+      operatingLocation: input.operatingLocation ?? null,
       condition: input.condition,
       commentaire: input.commentaire ?? null,
       visibility: input.visibility,
@@ -63,7 +64,7 @@ export class InventoryService {
       heightCm: input.heightCm ?? null,
       widthCm: input.widthCm ?? null,
       lengthCm: input.lengthCm ?? null,
-      depthCm: input.depthCm ?? null,
+      operatingLocation: input.operatingLocation ?? null,
       condition: input.condition,
       commentaire: input.commentaire ?? null,
       visibility: input.visibility,

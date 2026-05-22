@@ -54,7 +54,7 @@ model InventoryItem {
   heightCm          Int?
   widthCm           Int?
   lengthCm          Int?
-  depthCm           Int?
+  operatingLocation String?
   condition         String
   commentaire       String?
   visibility        InventoryItemVisibility @default(PRIVATE)
