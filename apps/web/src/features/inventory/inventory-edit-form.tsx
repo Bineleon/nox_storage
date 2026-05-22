@@ -73,7 +73,12 @@ export function InventoryEditForm({ id, item }: InventoryEditFormProps) {
   }
 
   if (meta.storageLocations.length === 0) {
-    return <p className="muted">Aucun emplacement en base. Lancez le seed : pnpm db:seed</p>;
+    return (
+      <p className="muted">
+        Aucun emplacement disponible.{" "}
+        <a href="/admin/storage-locations">Ajoutez des emplacements dans l’administration</a>.
+      </p>
+    );
   }
 
   return (

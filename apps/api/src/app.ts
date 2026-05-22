@@ -6,6 +6,7 @@ import prismaPlugin from "./plugins/prisma.js";
 import uploadPlugin from "./plugins/upload.js";
 import { categoryRoutes } from "./modules/categories/category.routes.js";
 import { inventoryRoutes } from "./modules/inventory/inventory.routes.js";
+import { storageLocationRoutes } from "./modules/storage-locations/storage-location.routes.js";
 
 export async function createApp() {
   const app = Fastify({ logger: true });
@@ -35,6 +36,7 @@ export async function createApp() {
   await app.register(prismaPlugin);
   await app.register(uploadPlugin);
   await app.register(categoryRoutes);
+  await app.register(storageLocationRoutes);
   await app.register(inventoryRoutes);
 
   app.get("/health", async () => ({ status: "ok" }));

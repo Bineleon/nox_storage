@@ -16,6 +16,9 @@ export default async function InventoryPage() {
           <Link className="button-link secondary" href="/admin/categories">
             Catégories
           </Link>
+          <Link className="button-link secondary" href="/admin/storage-locations">
+            Emplacements
+          </Link>
         </div>
       </div>
 

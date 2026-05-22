@@ -95,6 +95,10 @@ export const storageLocationInputSchema = z.object({
   city: z.string().min(1).max(120)
 });
 
+export const storageLocationIdParamsSchema = z.object({
+  id: z.string().uuid()
+});
+
 export type InventoryItemInput = z.infer<typeof inventoryItemUpsertSchema>;
 export type InventoryItemListQuery = z.infer<typeof inventoryItemListQuerySchema>;
 export type StorageLocationInput = z.infer<typeof storageLocationInputSchema>;

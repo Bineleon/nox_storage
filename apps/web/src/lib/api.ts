@@ -37,8 +37,8 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
   const response = await fetch(`${apiBaseUrl}${path}`, {
     cache: "no-store",
     ...rest,
-    body,
-    headers
+    headers,
+    ...(hasBody ? { body } : {})
   });
 
   if (!response.ok) {

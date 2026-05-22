@@ -57,7 +57,10 @@ export default function NewInventoryPage() {
         </p>
       ) : null}
       {meta && meta.storageLocations.length === 0 ? (
-        <p className="muted">Aucun emplacement en base. Lancez le seed : pnpm db:seed</p>
+        <p className="muted">
+          Aucun emplacement disponible.{" "}
+          <a href="/admin/storage-locations">Ajoutez des emplacements dans l’administration</a>.
+        </p>
       ) : null}
       {submitError ? <p className="muted">{submitError}</p> : null}
 

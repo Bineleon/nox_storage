@@ -25,10 +25,7 @@ export type InventoryItemResponse = {
 };
 
 export { listCategories } from "./category.service";
-
-export async function listStorageLocations() {
-  return apiFetch<Array<{ id: string; name: string }>>("/storage-locations");
-}
+export { listStorageLocations } from "./storage-location.service";
 
 export async function listInventoryItems(query: InventoryItemListQuery = {}) {
   const searchParams = new URLSearchParams();

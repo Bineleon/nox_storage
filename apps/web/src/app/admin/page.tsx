@@ -14,9 +14,14 @@ export default function AdminPage() {
       </div>
       <div className="card stack">
         <h2>Référentiels</h2>
-        <Link className="button-link" href="/admin/categories">
-          Catégories
-        </Link>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <Link className="button-link" href="/admin/categories">
+            Catégories
+          </Link>
+          <Link className="button-link" href="/admin/storage-locations">
+            Emplacements
+          </Link>
+        </div>
       </div>
     </main>
   );
