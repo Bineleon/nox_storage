@@ -25,11 +25,9 @@ export default async function InventoryDetailPage({ params }: InventoryDetailPag
           <div><strong>Emplacement:</strong> {item.storageLocation?.name ?? item.storageLocationId}</div>
           <div><strong>Quantité:</strong> {item.quantity}</div>
           <div><strong>État:</strong> {item.condition}</div>
-          <div><strong>Visibilité:</strong> {item.visibility}</div>
           <div><strong>Statut:</strong> {item.status}</div>
           <div><strong>Dimensions:</strong> {item.heightCm ?? "-"} × {item.widthCm ?? "-"} × {item.lengthCm ?? "-"} × {item.depthCm ?? "-"}</div>
           <div><strong>Commentaire:</strong> {item.commentaire ?? "-"}</div>
-          <div><strong>Description:</strong> {item.description ?? "-"}</div>
         </section>
 
         <section className="card stack">
